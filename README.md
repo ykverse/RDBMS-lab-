@@ -15,12 +15,31 @@ Welcome to the ultimate RDBMS Lab companion! This repository is a curated collec
 
 ## 📁 Folder Structure
 
-📦 rdbms-lab-cusat
-┣ 📂 Experiment-1
-┃ ┣ 📜 query.sql
-┃ ┗ 🖼️ output.jpg
-┣ 📂 Experiment-2
-┃ ┣ 📜 query.sql
-┃ ┗ 🖼️ output.png
-┣ 📂 ...
-┗ 📜 README.md
+📦 rdbms-lab-cusat/
+ ┣ 📂 1/
+ ┃ ┣ 📜 queries.txt
+ ┃ ┣ 🖼️ output1.jpg
+ ┃ ┣ 🖼️ output2.jpg
+ ┃ ┣ 📄 output1.pdf
+ ┃ ┗ 📄 output2.pdf
+ ┣ 📂 2/
+ ┃ ┣ 📜 queries.txt
+ ┃ ┣ 🖼️ ...
+ ┃ ┗ 📄 ...
+ ┣ 📂 3/
+ ┃ ┗ ...
+ ┣ 📂 4/
+ ┃ ┗ ...
+ ┣ 📂 5/
+ ┃ ┗ ...
+ ┣ 📂 6/
+ ┃ ┗ ...
+ ┣ 📂 7/
+ ┃ ┗ ...
+ ┣ 📂 8/
+ ┃ ┗ ...
+ ┣ 📂 all outputs/
+ ┃ ┗ 📄 all_experiment_outputs.pdf
+ ┣ 📂 all quaries/
+ ┃ ┗ 📜 all_queries.txt
+ ┗ 📄 rdbms_lab_questions.pdf
