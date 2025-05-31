@@ -1,0 +1,34 @@
+create table sales_man (salesman_no int primary key, s_name varchar(100) not null, place varchar(100), phone varchar(15) unique);
+
+
+create table sales_order (order_no int primary key, order_date date not null, salesman_no int, del_type char(1), order_status varchar(20), foreign key (salesman_no) references sales_man(salesman_no), check (del_type in ('p', 'f')), check (order_status in ('inprocess', 'fullfilled', 'backorder', 'cancelled')));
+
+
+{a}  insert into sales_man values (101, 'tony stark', 'new york', '4674537');
+     insert into sales_man values (102, 'steve rogers', 'brooklyn', '378356');
+     insert into sales_man values (103, 'natasha', 'stalingrad', '78567565');
+     insert into sales_man values (104, 'peter parker', 'queens', '24353546');
+     insert into sales_man values (105, 'bruce banner', 'dayton', '2345655756');
+
+
+     insert into sales_order values (1, '2025-05-01', 101, 'p', 'inprocess');
+     insert into sales_order values (2, '2025-05-02', 102, 'f', 'fullfilled');
+     insert into sales_order values (3, '2025-05-03', 103, 'p', 'backorder');
+     insert into sales_order values (4, '2025-05-04', 104, 'f', 'cancelled');
+     insert into sales_order values (5, '2025-05-05', 105, 'p', 'inprocess');
+
+
+{b}  alter table sales_man drop primary key;
+
+{b}  alter table sales_order drop foreign key sales_order_ibfk_1;
+
+{c}  alter table sales_order drop check chk_del_type;
+     alter table sales_order drop check chk_order_status;
+
+
+{d}  alter table sales_man add primary key (salesman_no);
+
+
+{e}  alter table sales_order add constraint fk_salesman foreign key (salesman_no) references sales_man(salesman_no);
+     alter table sales_order add constraint chk_del_type check (del_type in ('p', 'f'));
+     alter table sales_order add constraint chk_order_status check (order_status in ('inprocess', 'fullfilled', 'backorder', 'cancelled'));

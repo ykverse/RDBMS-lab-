@@ -1,0 +1,39 @@
+create table employee(Employee_Name varchar(10) primary key, City varchar(10));
+
+create table Works(Employee_Name varchar(10) primary key, Company_Name varchar(10),salary integer);
+
+create table Company(Company_Name varchar(10) primary key, City varchar(10));
+
+create table manages(Employee_Name varchar(10) primary key, Manager_name varchar(10));
+
+insert into employee values('John','Kakkanad');
+insert into employee values('Surya','Edapally');
+insert into employee values('Sara','Kakkanad');
+insert into employee values('Shajahan','Thevara');
+insert into employee values('Shado','Edapally');
+
+
+insert into works values('John','Wipro',200000);
+insert into works values('Surya','Wipro',30000);
+insert into works values('Sara','Infosys',10000);
+insert into works values('Shajahan','Infosys',30000);
+insert into works values('Shado','Infosys',20000);
+
+insert into company values('Wipro','Kakkanad');
+insert into company values('Infosys','Kakkanad');
+
+{a}  select Employee_name from works where company_name='infosys';
+
+{b}  select employee_name,city from employee where employee_name in (select employee_name from works where company_name='wipro');
+
+{c}  select employee_name,city from employee where employee_name in (select employee_name from works where company_name='infosys' and salary>10000);
+
+{d}  select Employee_name from employee,company where employee.City=company.City
+group by Employee_name;
+
+{e}  select Employee_name from works where Company_Name<>'Wipro';
+
+{f}  select company_name from works group by company_name having count(distinct employee_name) >= all(select count(distinct employee_name) from works group by company_name);
+
+
+

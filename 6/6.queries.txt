@@ -1,0 +1,31 @@
+Create table product(Product_code varchar(4) primary key, Product_Name varchar(15),   Category  varchar(15), Quantity int, Price numeric(6,2));
+
+
+
+insert into product values('P001','sunlight','washing powder',300,50.75);
+
+insert into product values('P002','surf excel','washing powder',50,48.50);
+
+insert into product values('P003','colgate','paste',120,20);
+
+insert into product values('P004','lux','bath soap',25,50);
+
+insert into product values('P005','fogg','perfume',530,120);
+
+{a}   select * from product order by product_Name desc;
+
+{b}   select product_code,product_Name from product where price between 20
+and 50;
+
+{c}   select * from product where category in('bath soap','washing powder','paste');
+
+{d}   select * from product where Quantity<100 or Quantity>500;
+
+{e}   select * from product where product_Name like 's%';
+
+{f}   select * from product where category!='paste';
+
+{g}   select * from product where product_name like '_u%' and category='washing powder';
+
+
+

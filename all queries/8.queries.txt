@@ -1,0 +1,43 @@
+create table supplier(supcode char(2) primary key, sname varchar(10), city varchar(10));
+
+create table products(pcode char(2) primary key, pname varchar(10));
+
+create table supl_product(supcode char(2) primary key, pcode char(2), qty integer);
+
+
+
+
+insert into supplier values('s1','walter','america');
+insert into supplier values('s2','jesse','australia');
+insert into supplier values('s3','skyler','china');
+insert into supplier values('s4','hank','europ');
+insert into supplier values('s5','gus','india');
+
+
+
+
+insert into products values('p1','computer');
+insert into products values('p2','phone');
+insert into products values('p3','tv');
+
+
+insert into supl_product values('s1','p1',3);
+insert into supl_product values('s2','p2',4);
+insert into supl_product values('s3','p2',2);
+insert into supl_product values('s4','p3',7);
+
+
+{a}  select A.supcode AS SA, B.supcode AS SB from supplier A, supplier B where A.city = B. city and A.supcode < B.supcode;
+
+{b}  select sname from supplier where supcode in (select supcode from supl_product where pcode='p2');
+
+{c}  select pcode FROM supl_product GROUP BY pcode having count(supcode) > 1;
+
+{d}  select supcode FROM supplier WHERE CITY=(select city from supplier where supcode='S1');
+
+{e}  select sname from supplier where supcode in(select supcode from supl_product where pcode='p1');
+
+{f}  select count(supcode) from supl_product;
+
+{g}  select pcode ,sum(qty) from supl_product group by pcode;
+

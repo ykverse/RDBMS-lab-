@@ -1,0 +1,39 @@
+create table Bank_customer (accno int primary key,cust_name varchar(100),place varchar(100));
+
+create table Deposit (accno int,deposit_no int primary key,damount decimal(10,2),foreign key(accno) references Bank_customer(accno));
+
+create table Loan (accno int,loan_no int primary key,Lamount decimal(10,2),FOREIGN KEY (accno) REFERENCES Bank_customer(accno));
+
+
+
+
+insert into Bank_customer values (1, 'Chandler bing', 'new york');
+insert into Bank_customer values(2, 'joey', 'DC');    
+insert into Bank_customer values(3, 'rose', 'LA');
+insert into Bank_customer values(4, 'monica', 'LA'); 
+insert into Bank_customer values(5, 'rachal', 'new york');            
+
+
+insert into Deposit values (1, 101, 50000.00);  
+insert into Deposit values(3, 102, 75000.00);   
+insert into Deposit values(4, 103, 30000.00);   
+
+
+insert into Loan values (2, 201, 200000.00); 
+insert into Loan values(3, 202, 100000.00); 
+insert into Loan values(5, 203, 150000.00);  
+
+{a}  select * from bank_customer;
+
+{b}  select bc.accno, bc.cust_name, d.damount from Bank_customer bc join Deposit d on bc.accno = d.accno left join Loan l on bc.accno = l.accno WHERE l.accno is NULL;
+
+
+{c}  select b.accno,b.cust_name,l.lamount from bank_customer b join loan l on b.accno=l.accno left join deposit d on b.accno=d.accno where d.accno is null;
+
+{d}  select bc.accno, bc.cust_name, d.damount, l.lamount from bank_customer bc join deposit d on bc.accno = d.accno join loan l on bc.accno = l.accno;
+
+
+
+{e}  select bc.accno, bc.cust_name from bank_customer bc left join deposit d on bc.accno = d.accno left join loan l on bc.accno = l.accno where d.accno is null and l.accno is null;
+
+

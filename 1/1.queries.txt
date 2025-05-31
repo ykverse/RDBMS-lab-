@@ -1,0 +1,28 @@
+create table customer(c_no varchar(5),c_name varchar(15),age int,phone varchar(10));
+
+ {a} insert into customer value('a01','Elliot',23,'+1123453');
+     insert into customer value('a02','Darline',21,'+1745453');
+     insert into customer value('a03','tyreal',26,'+1036753');
+     insert into customer value('a04','andrason',38,'+199993');
+     insert into customer value('a05','diago',29,'+192654');
+
+{b}  alter table customer add column d_birth date;
+
+{c}   create table c_phone as select c_name, phone from customer;
+
+{d}   alter table customer drop column age;
+
+{e}   alter table customer modify c_name varchar(25);
+
+{f}   delete from customer;
+
+{g}   alter table customer rename to cust;
+
+{h}   drop table cust;
+
+
+
+
+
+
+
