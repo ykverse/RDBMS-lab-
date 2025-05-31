@@ -1,6 +1,6 @@
-# 💽 RDBMS Lab – 4th Sem CSE (Calicut University)
+# 💽 RDBMS Lab – 4th Sem CS (Calicut University)
 
-Welcome to the **ultimate SQL lab reference** for 4th Semester B.Tech Computer Science (Calicut University). This repo contains **all RDBMS lab experiments**, with organized **queries**, **outputs (JPG + PDF)**, and a combined **master file** — perfect for revision and exam prep. 🎓🔥
+Welcome to the **ultimate SQL lab reference** for 4th Semester BSc Computer Science (Calicut University). This repo contains **all RDBMS lab experiments**, with organized **queries**, **outputs (JPG + PDF)**, and a combined **master file** — perfect for revision and exam prep. 🎓🔥
 
 ---
 
@@ -84,8 +84,8 @@ Want to help improve this?
 
 ## 🧑‍💻 Author
 
-**Yedhu Krishna**  
-B.Tech CSE @ Calicut University  
+**ykverse**  
+BSc CS @ Calicut University  
 GitHub: [ykverse](https://github.com/ykverse)
 
 ---
