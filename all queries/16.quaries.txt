@@ -1,0 +1,35 @@
+CREATE TABLE emp_salary (
+    empno NUMBER PRIMARY KEY,
+    ename VARCHAR2(50),
+    dept VARCHAR2(50),
+    salary NUMBER
+);
+
+INSERT INTO emp_salary (empno, ename, dept, salary) VALUES (1, 'Dennis', 'HR', 60000);
+INSERT INTO emp_salary (empno, ename, dept, salary) VALUES (2, 'Yedhu', 'Finance', 75000);
+INSERT INTO emp_salary (empno, ename, dept, salary) VALUES (3, 'Malini', 'HR', 65000);
+INSERT INTO emp_salary (empno, ename, dept, salary) VALUES (4, 'rukku', 'IT', 80000);
+INSERT INTO emp_salary (empno, ename, dept, salary) VALUES (5, 'krishnan', 'Finance', 72000);
+
+CREATE OR REPLACE FUNCTION get_avg_salary(p_dept VARCHAR2)
+RETURN NUMBER IS
+    v_avg_salary NUMBER;
+BEGIN
+    SELECT AVG(salary) INTO v_avg_salary 
+    FROM emp_salary 
+    WHERE dept = p_dept;
+
+    RETURN v_avg_salary;
+END;
+/
+SET SERVEROUTPUT ON;
+
+DECLARE
+    v_salary NUMBER;
+    v_dept VARCHAR2(50);
+BEGIN
+    v_dept := '&Enter_Department';  
+    v_salary := get_avg_salary(v_dept);
+    DBMS_OUTPUT.PUT_LINE('Average Salary in ' || v_dept || ': ' || v_salary);
+END;
+/

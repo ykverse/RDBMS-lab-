@@ -1,0 +1,27 @@
+CREATE TABLE Student (
+    regno NUMBER PRIMARY KEY,
+    sname VARCHAR2(100),
+    sub1 NUMBER,
+    sub2 NUMBER,
+    sub3 NUMBER,
+    sub4 NUMBER,
+    sub5 NUMBER,
+    mark_total NUMBER,
+    avg_mark NUMBER
+);
+
+CREATE OR REPLACE TRIGGER before_insert_student
+BEFORE INSERT ON Student
+FOR EACH ROW
+BEGIN
+    :NEW.mark_total := :NEW.sub1 + :NEW.sub2 + :NEW.sub3 + :NEW.sub4 + :NEW.sub5;
+    :NEW.avg_mark := :NEW.mark_total / 5;
+END;
+/
+
+INSERT INTO Student (regno, sname, sub1, sub2, sub3, sub4, sub5)
+VALUES (101, 'Alice', 85, 90, 78, 88, 92);
+
+COMMIT;
+
+SELECT * FROM Student;

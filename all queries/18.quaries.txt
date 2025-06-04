@@ -1,0 +1,52 @@
+-- Create phonebook table
+CREATE TABLE phonebook (
+    pname VARCHAR2(100),
+    mobno VARCHAR2(15)
+);
+
+-- Create del_phonebook table to store deleted or updated records with modification date
+CREATE TABLE del_phonebook (
+    pname VARCHAR2(100),
+    mobno VARCHAR2(15),
+    modfy_date DATE
+);
+
+
+-- Insert records in a structured order
+INSERT INTO phonebook (pname, mobno) VALUES ('amal', '123-456-7890');
+INSERT INTO phonebook (pname, mobno) VALUES ('febin', '987-654-3210');
+INSERT INTO phonebook (pname, mobno) VALUES ('yadav', '555-123-4567');
+INSERT INTO phonebook (pname, mobno) VALUES ('dennis', '444-567-8901');
+
+
+set serveroutput on;
+-- Create the Trigger for DELETE and UPDATE operations on phonebook
+CREATE OR REPLACE TRIGGER phonebook_trigger
+AFTER DELETE OR UPDATE ON phonebook
+FOR EACH ROW
+BEGIN
+    -- Insert the deleted/updated record into the del_phonebook table
+    INSERT INTO del_phonebook (pname, mobno, modfy_date)
+    VALUES (:OLD.pname, :OLD.mobno, SYSDATE);
+END;
+/
+
+
+-- Query the phonebook table to verify the inserted records
+SELECT * FROM phonebook;
+
+
+DELETE FROM phonebook WHERE pname = 'amal';
+
+
+
+UPDATE phonebook
+SET mobno = '555-000-9999'
+WHERE pname = 'yadav';
+
+
+
+SELECT * FROM del_phonebook;
+
+
+

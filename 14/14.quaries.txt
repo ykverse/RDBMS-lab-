@@ -1,0 +1,30 @@
+set serveroutput on;
+
+create or replace procedure pro(n in number) is
+    i number := 3;
+begin
+    if n <= 1 then
+        dbms_output.put_line('no');
+        return;
+    elsif n = 2 then
+        dbms_output.put_line('yes');
+        return;
+    elsif mod(n, 2) = 0 then
+        dbms_output.put_line('no');
+        return;
+    end if;
+
+    while i <= floor(sqrt(n)) loop
+        if mod(n, i) = 0 then
+            dbms_output.put_line('no');
+            return;
+        end if;
+        i := i + 2;
+    end loop;
+
+    dbms_output.put_line('yes');
+end;
+/
+
+
+exec pro(&n);

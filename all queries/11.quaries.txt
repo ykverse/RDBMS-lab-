@@ -1,0 +1,17 @@
+create table areas( r number,area number(14,2));
+ set serveroutput on;
+declare
+r number;
+area number(14,2);
+pi constant number:=3.14;
+begin
+r:=3;
+while r<=7
+loop
+area:=pi*power(r,2);
+insert into areas
+values(r,area);
+r:=r+1;
+end loop;
+end;
+/

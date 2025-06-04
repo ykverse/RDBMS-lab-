@@ -1,0 +1,36 @@
+SET SERVEROUTPUT ON;
+
+CREATE OR REPLACE PROCEDURE fib(p_limt IN NUMBER) IS
+    a NUMBER := 0;
+    b NUMBER := 1;
+    c NUMBER;
+BEGIN
+    IF p_limt < 0 THEN
+        DBMS_OUTPUT.PUT_LINE('Don''t be stupid man, Fibonacci can''t be negative!');
+        RETURN;
+    END IF;
+
+
+    IF p_limt = 0 THEN
+        DBMS_OUTPUT.PUT_LINE('0');
+        RETURN;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE(a);
+    IF b <= p_limt THEN
+        DBMS_OUTPUT.PUT_LINE(b);
+    END IF;
+
+
+    LOOP
+        c := a + b;
+        EXIT WHEN c > p_limt;
+        DBMS_OUTPUT.PUT_LINE(c);
+        a := b;
+        b := c;
+    END LOOP;
+END;
+/
+
+
+EXEC fib(10);

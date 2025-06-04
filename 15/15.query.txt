@@ -1,0 +1,48 @@
+CREATE TABLE stud_mark (
+    regno NUMBER PRIMARY KEY,
+    sname VARCHAR2(100),
+    avg_mark NUMBER
+);
+
+
+INSERT INTO stud_mark (regno, sname, avg_mark) VALUES (101, 'Alice', 92);
+INSERT INTO stud_mark (regno, sname, avg_mark) VALUES (102, 'Bob', 85);
+INSERT INTO stud_mark (regno, sname, avg_mark) VALUES (103, 'Charlie', 72);
+INSERT INTO stud_mark (regno, sname, avg_mark) VALUES (104, 'David', 47);
+INSERT INTO stud_mark (regno, sname, avg_mark) VALUES (105, 'Eva', 59);
+
+
+SET SERVEROUTPUT ON;
+CREATE OR REPLACE PROCEDURE display_grade_count AS
+    v_distinction NUMBER := 0;
+    v_first_class NUMBER := 0;
+    v_second_class NUMBER := 0;
+    v_third_class NUMBER := 0;
+    v_failed NUMBER := 0;
+BEGIN
+    -- Loop through each student to determine their grade category
+    FOR rec IN (SELECT avg_mark FROM stud_mark) LOOP
+        IF rec.avg_mark BETWEEN 90 AND 100 THEN
+            v_distinction := v_distinction + 1;
+        ELSIF rec.avg_mark BETWEEN 75 AND 89 THEN
+            v_first_class := v_first_class + 1;
+        ELSIF rec.avg_mark BETWEEN 60 AND 74 THEN
+            v_second_class := v_second_class + 1;
+        ELSIF rec.avg_mark BETWEEN 50 AND 59 THEN
+            v_third_class := v_third_class + 1;
+        ELSE
+            v_failed := v_failed + 1;
+        END IF;
+    END LOOP;
+
+    -- Display the result
+    DBMS_OUTPUT.PUT_LINE('Distinction: ' || v_distinction);
+    DBMS_OUTPUT.PUT_LINE('First Class: ' || v_first_class);
+    DBMS_OUTPUT.PUT_LINE('Second Class: ' || v_second_class);
+    DBMS_OUTPUT.PUT_LINE('Third Class: ' || v_third_class);
+    DBMS_OUTPUT.PUT_LINE('Failed: ' || v_failed);
+END;
+/
+
+
+EXEC display_grade_count;

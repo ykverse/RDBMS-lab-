@@ -1,0 +1,36 @@
+-- Create the table
+CREATE TABLE exam_result (
+    rollno INT PRIMARY KEY,
+    avg_score NUMBER(5,2),
+    grade VARCHAR(1)
+);
+
+-- Insert 10 records with NULL values for the grade
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (1, 95, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (2, 82, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (3, 67, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (4, 52, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (5, 48, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (6, 77, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (7, 89, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (8, 59, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (9, 65, NULL);
+INSERT INTO exam_result (rollno, avg_score, grade) VALUES (10, 91, NULL);
+
+-- PL/SQL block to update the grade field based on avg_score
+BEGIN
+    FOR rec IN (SELECT rollno, avg_score FROM exam_result WHERE grade IS NULL) LOOP
+        IF rec.avg_score BETWEEN 90 AND 100 THEN
+            UPDATE exam_result SET grade = 'A' WHERE rollno = rec.rollno;
+        ELSIF rec.avg_score BETWEEN 75 AND 89 THEN
+            UPDATE exam_result SET grade = 'B' WHERE rollno = rec.rollno;
+        ELSIF rec.avg_score BETWEEN 60 AND 74 THEN
+            UPDATE exam_result SET grade = 'C' WHERE rollno = rec.rollno;
+        ELSIF rec.avg_score BETWEEN 50 AND 59 THEN
+            UPDATE exam_result SET grade = 'D' WHERE rollno = rec.rollno;
+        ELSE
+            UPDATE exam_result SET grade = 'E' WHERE rollno = rec.rollno;
+        END IF;
+    END LOOP;
+    COMMIT;
+END;

@@ -23,6 +23,7 @@ Welcome to the **ultimate SQL lab reference** for 4th Semester BSc Computer Scie
  ┣ 📂 6/
  ┣ 📂 7/
  ┣ 📂 8/
+ ┣ 📂../
  ┣ 📂 all outputs/
  ┃ ┗ 📄 all_experiment_outputs.pdf
  ┣ 📂 all_queries/
@@ -35,6 +36,8 @@ Welcome to the **ultimate SQL lab reference** for 4th Semester BSc Computer Scie
 ## 🔍 What's Inside?
 
 - 📌 **Experiment-wise folders** (`1`–`8`) with:
+=======
+- 📌 **Experiment-wise folders** (`1`–`18`) with:
   - SQL queries (`queries.txt`)
   - Output screenshots (`.jpg`)
   - Output as PDFs (`.pdf`)

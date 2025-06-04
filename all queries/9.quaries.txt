@@ -1,0 +1,53 @@
+CREATE TABLE SALARIES (
+    EmpNo VARCHAR2(10),
+    Name VARCHAR2(20),
+    Basic NUMBER(6),
+    DA NUMBER(6),
+    GrossSalary NUMBER(6),
+    PF NUMBER(6),
+    NetSalary NUMBER(6),
+    AnnualSalary NUMBER(10),
+    Tax NUMBER(10)
+);
+
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E001', 'Employee1', 50000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E002', 'Employee2', 60000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E003', 'Employee3', 75000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E004', 'Employee4', 90000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E005', 'Employee5', 110000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E006', 'Employee6', 130000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E007', 'Employee7', 140000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E008', 'Employee8', 160000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E009', 'Employee9', 180000);
+INSERT INTO SALARIES (EmpNo, Name, Basic) VALUES ('E010', 'Employee10', 200000);
+
+CREATE OR REPLACE PROCEDURE CALCULATE_SALARIES AS
+BEGIN
+    UPDATE SALARIES
+    SET DA = Basic * 0.40,
+        PF = Basic * 0.10,
+        GrossSalary = Basic + DA,
+        NetSalary = GrossSalary - PF,
+        AnnualSalary = NetSalary * 12;
+END;
+/
+BEGIN
+    CALCULATE_SALARIES;
+END;
+/
+CREATE OR REPLACE PROCEDURE CALCULATE_TAX AS
+BEGIN
+    UPDATE SALARIES
+    SET Tax = CASE 
+        WHEN AnnualSalary <= 100000 THEN 0
+        WHEN AnnualSalary > 100000 AND AnnualSalary <= 150000 THEN (AnnualSalary - 100000) * 0.10
+        WHEN AnnualSalary > 150000 AND AnnualSalary <= 250000 THEN (AnnualSalary - 150000) * 0.20
+        WHEN AnnualSalary > 250000 THEN (AnnualSalary - 250000) * 0.30
+    END;
+END;
+/
+BEGIN
+    CALCULATE_TAX;
+END;
+/
+SELECT * FROM SALARIES;
